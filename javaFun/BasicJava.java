@@ -67,5 +67,40 @@ public class BasicJava {
     return total;
   }
 
-  
+  public int[] eliminateNegs(int[] arr) {
+    for (int i = 0; i < arr.length; i += 1) {
+      if (arr[i] < 0) {
+        arr[i] = 0;
+      }
+    }
+    return arr;
+  }
+
+  public int[] maxMinAve(int[] arr) {
+    int[] results = new int[3];
+    int max = arr[0];
+    int min = arr[0];
+    int sum = 0;
+    for (int value : arr) {
+      if (value > max) {
+        max = value;
+      }
+      if (value < min) {
+        min = value;
+      }
+      sum += value;
+    }
+    results[0] = max;
+    results[1] = min;
+    results[2] = (sum/arr.length);
+    return results;
+  }
+
+  public int[] arrayShift(int[] arr) {
+    for (int i = 0; i < arr.length -1; i += 1) {
+      arr[i] = arr[i + 1];
+    }
+    arr[arr.length-1] = 0;
+    return arr;
+  }
 }
