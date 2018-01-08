@@ -3,10 +3,10 @@ package com.codingdojo.nrampton.objectmaster;
 public class Human {
 	//attributes
 	private String name;
-	private int health;
-	private int strength;
-	private int stealth;
-	private int intelligence;
+	protected int health;
+	protected int strength;
+	protected int stealth;
+	protected int intelligence;
 	
 	//constructor
 	public Human(String name) {
