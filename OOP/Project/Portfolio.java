@@ -20,7 +20,6 @@ public class Portfolio {
     for (Project proj : this.projects) {
       sum += proj.getInitialCost();
     }
-    System.out.println("This portfolio costs:");
     return sum;
   }
   //display elevator pitches for all projects in a folder
