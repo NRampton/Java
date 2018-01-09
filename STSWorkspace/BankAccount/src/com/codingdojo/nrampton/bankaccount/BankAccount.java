@@ -7,7 +7,7 @@ public class BankAccount {
 	
 	//class members
 	private static int accountsCount = 0;
-	private static double accountsTotal = 0;
+	static double accountsTotal = 0;
 	private static void displayTotal() {
 		System.out.println("Grand total is " + accountsTotal);
 	}
@@ -44,7 +44,7 @@ public class BankAccount {
 	}
 
 	//money in and out
-	private void checkingDeposit(double amt) {
+	public void checkingDeposit(double amt) {
 		if (amt < 0) {
 			System.out.println("A negative deposit is a withdrawal. Please select the appropriate transaction");
 			return;
@@ -52,7 +52,7 @@ public class BankAccount {
 		this.checkingBalance += amt;
 		accountsTotal += amt;
 	}
-	private void savingsDeposit(double amt) {
+	public void savingsDeposit(double amt) {
 		if (amt < 0) {
 			System.out.println("A negative deposit is a withdrawal. Please select the appropriate transaction");
 			return;
@@ -60,7 +60,7 @@ public class BankAccount {
 		this.savingsBalance += amt;
 		accountsTotal += amt;
 	}
-	private void checkingWithdrawal(double amt) {
+	public void checkingWithdrawal(double amt) {
 		if (amt > this.checkingBalance) {
 			System.out.println("No can do. You ain't got that much.");
 			return;
@@ -68,7 +68,7 @@ public class BankAccount {
 		this.checkingBalance -= amt;
 		accountsTotal -= amt;
 	}
-	private void savingsWithdrawal(double amt) {
+	public void savingsWithdrawal(double amt) {
 		if (amt > this.savingsBalance) {
 			System.out.println("No can do. You ain't got that much.");
 			return;
@@ -78,7 +78,7 @@ public class BankAccount {
 	}
 	
 	//seeing balances
-	private void displayBalances() {
+	public void displayBalances() {
 		System.out.println("Checking balance: " + this.checkingBalance);
 		System.out.println("Savings balance: " + this.savingsBalance);
 	}
