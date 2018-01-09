@@ -44,7 +44,7 @@ public class SinglyLinkedList {
   }
   //return the first node with a given value
   public Node find(int val) {
-    if (this.head ==null) {
+    if (this.head == null) {
       System.out.println("Not found");
       Node emptyNode = new Node(0);
       return emptyNode;
