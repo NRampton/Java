@@ -11,8 +11,9 @@ public class ExceptionallyGeneric {
       try {
         Integer castedValue = (Integer) myList.get(i);
         System.out.println(castedValue);
-      } catch (ClassCastException e) {
+      } catch (ClassCastException err) {
         System.out.format("ERROR ON INDEX %d", i);
+        System.out.println(err.toString());
         System.out.println();
       }
     }
