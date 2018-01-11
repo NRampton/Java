@@ -1,0 +1,16 @@
+h1 {
+  display: inline-block;
+}
+
+nav>a {
+  padding: 0 5px;
+  border-left: 1px solid black;
+}
+
+nav>a:first-child {
+  border-left: none;
+}
+
+p {
+  border: 1px solid black;
+}
