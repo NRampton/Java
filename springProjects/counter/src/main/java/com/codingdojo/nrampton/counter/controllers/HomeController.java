@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-//@RequestMapping("/your_server")
+@RequestMapping("/your_server")
 public class HomeController {
-	@RequestMapping("/")
+	@RequestMapping("")
 	public String index(HttpSession session) {
 		if (session.isNew()) {
 			session.setAttribute("counter", 0);
