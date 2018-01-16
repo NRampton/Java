@@ -7,9 +7,17 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.nrampton.books.models.Book;
+import com.codingdojo.nrampton.books.repositories.BookRepository;
 
 @Service
 public class BookService {
+	private BookRepository bookRepository;
+	
+	//constructor for dependency injection
+	public BookService(BookRepository bookRepo) {
+		this.bookRepository = bookRepo;
+	}
+	
 	private List<Book> books = new ArrayList<Book> (Arrays.asList(
 			new Book("Leviathan Wakes", "Space Opera", "English", 400),
 			new Book("The Brothers K", "Brothers in mid-20th century America", "English", 500),
@@ -19,7 +27,7 @@ public class BookService {
 		));
 	
 	public List<Book> getAllBooks() {
-		return books;
+		return bookRepository.findAll();
 	}
 	
 	public Book findBookByIndex(int index) {
@@ -31,7 +39,7 @@ public class BookService {
 	}
 	
 	public void addBook(Book book) {
-		books.add(book);
+		bookRepository.save(book);
 	}
 	
 	public void updateBook(int id, Book book) {
@@ -40,9 +48,9 @@ public class BookService {
 		}
 	}
 	
-	public void destroyBook(int id) {
+	public void destroyBook(Long id) {
 		if (id < books.size()) {
-			books.remove(id);
+			bookRepository.delete(id);
 		}
 	}
 }

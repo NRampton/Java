@@ -15,7 +15,9 @@
 			    <td><c:out value="${book.description}"/></td>
 			    <td><c:out value="${book.language}"/></td>
 			    <td><c:out value="${book.numberOfPages}"/></td>
-			    <td><a href="/books/delete/${loop.index}">Delete</a></td>
+			    <td><c:out value="${book.id}" /></td>
+			    <td><a href="/books/delete/${book.id}">Delete</a></td>
+			    <td><a href="/books/edit/${book.id}">Edit</a></td>
     			</tr>
 		</c:forEach>
 	</table>

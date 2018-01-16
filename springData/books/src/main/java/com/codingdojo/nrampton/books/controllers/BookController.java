@@ -25,6 +25,7 @@ public class BookController {
 	@RequestMapping("/books")
 	public String showBooks(Model model) {
 		List<Book> books = bs.getAllBooks();
+		System.out.println(books);
 		model.addAttribute("books", books);
 		return "books";
 	}
@@ -73,7 +74,7 @@ public class BookController {
 	}
 	
 	@RequestMapping("/books/delete/{id}")
-	public String destroyBook(@PathVariable("id") int id) {
+	public String destroyBook(@PathVariable("id") Long id) {
 		bs.destroyBook(id);
 		return "redirect:/books";
 	}
