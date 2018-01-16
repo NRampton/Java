@@ -25,14 +25,13 @@ public class BookController {
 	@RequestMapping("/books")
 	public String showBooks(Model model) {
 		List<Book> books = bs.getAllBooks();
-		System.out.println(books);
 		model.addAttribute("books", books);
 		return "books";
 	}
 	
 	@RequestMapping("/books/{index}")
-	public String findBookByIndex(Model model, @PathVariable("index") int index) {
-		Book book = bs.findBookByIndex(index);
+	public String findBookByIndex(Model model, @PathVariable("index") Long index) {
+		Book book = bs.findBookById(index);
 		model.addAttribute("book", book);
 		return "showBook";
 	}
@@ -53,18 +52,18 @@ public class BookController {
 	}
 	
 	@PostMapping("books/edit/{id}")
-	public String updateBook(@PathVariable("id") int id, @Valid @ModelAttribute("book") Book book, BindingResult result) {
+	public String updateBook(@PathVariable("id") Long id, @Valid @ModelAttribute("book") Book book, BindingResult result) {
 		if (result.hasErrors()) {
 			return "editBook";
 		} else {
-			bs.updateBook(id, book);
+			bs.updateBook(book);
 			return "redirect:/books";
 		}
 	}
 	
 	@RequestMapping("/books/edit/{id}")
-	public String editBook(@PathVariable("id") int id, Model model) {
-		Book book = bs.findBookByIndex(id);
+	public String editBook(@PathVariable("id") Long id, Model model) {
+		Book book = bs.findBookById(id);
 		if (book != null) {
 			model.addAttribute("book", book);
 			return "editBook";

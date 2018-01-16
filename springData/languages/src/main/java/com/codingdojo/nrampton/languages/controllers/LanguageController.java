@@ -44,24 +44,23 @@ public class LanguageController {
 	}
 	
 	@RequestMapping("/{id}")
-	public String showLanguage(@PathVariable("id") int id, Model model) {
-		Language language = ls.getLanguageById(id);
+	public String showLanguage(@PathVariable("id") Long id, Model model) {
+		Language language = ls.findLanguageById(id);
 		model.addAttribute("language", language);
-		model.addAttribute("id", id);
-		System.out.println(model.toString());
 		return "language";
 	}
 	
 	@RequestMapping("/delete/{id}")
-	public String deleteLanguage(@PathVariable("id") int id) {
+	public String deleteLanguage(@PathVariable("id") Long id) {
 		ls.destroyLanguage(id);
 		return "redirect:/languages";
 	}
 	
 	@RequestMapping("/edit/{id}")
-	public String editLanguage(@PathVariable("id") int id, Model model) {
-		Language language = ls.getLanguageById(id);
+	public String editLanguage(@PathVariable("id") Long id, Model model) {
+		Language language = ls.findLanguageById(id);
 		if (language != null) {
+			System.out.println("Language ID we're trying to display for update: " + language.getId());
 			model.addAttribute("language", language);
 			return "editLanguage";
 		} else {
@@ -70,12 +69,13 @@ public class LanguageController {
 	}
 	
 	@PostMapping("/edit/{id}")
-	public String updateLanguage(@PathVariable("id") int id, @Valid @ModelAttribute("language") Language language, BindingResult result) {
-		System.out.println(result);
+	public String updateLanguage(@PathVariable("id") Long id, @Valid @ModelAttribute("language") Language language, BindingResult result) {   
+		System.out.println("Here's the ID we got back from the form: " + language.getId());
+		System.out.println(language);
 		if (result.hasErrors()) {
 			return "editLanguage";
 		} else {
-			ls.updateLanguage(id, language);
+			ls.updateLanguage(language);
 			return "redirect:/languages";
 		}
 	}

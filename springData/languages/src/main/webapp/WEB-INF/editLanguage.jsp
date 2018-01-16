@@ -9,7 +9,7 @@
 <title>Edit <c:out value="${ language.name }" /></title>
 </head>
 <body>
-	<form:form method="POST" action="/languages/edit/${ id }" modelAttribute="language">
+	<form:form method="POST" action="/languages/edit/${id}" modelAttribute="language">
 		<form:label path="name">Name
 		<form:errors path="name" />
 		<form:input path="name" /></form:label>
@@ -21,6 +21,8 @@
 		<form:label path="version">Current Version
 		<form:errors path="version" />
 		<form:input path="version" /></form:label>
+		
+		<form:hidden path="id"/>
 		
 		<input type="submit" value="Update"/>
 	</form:form>
