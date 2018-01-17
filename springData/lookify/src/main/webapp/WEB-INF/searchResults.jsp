@@ -25,7 +25,7 @@
 		<tbody>
 			<c:forEach items="${results}" var="song">
 				<tr>
-					<td>${ song.title }</td>
+					<td><a href="/songs/${ song.id}">${ song.title }</a></td>
 					<td>${ song.artist }</td>
 					<td>${ song.rating }</td>
 					<td><a href="/songs/delete/${ song.id }">Delete</a></td>

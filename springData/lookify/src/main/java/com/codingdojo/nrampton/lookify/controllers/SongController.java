@@ -77,7 +77,6 @@ public class SongController {
 	
 	@PostMapping("/search")
 	public String searchByArtist(Model model, @RequestParam("search") String term) {
-		System.out.println(term);
 		model.addAttribute("term", term);
 		model.addAttribute("results", _ss.searchByArtist(term));
 		return "searchResults";
