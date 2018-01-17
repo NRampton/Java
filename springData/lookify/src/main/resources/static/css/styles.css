@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+}
+
+h2 {
+	color: blue;
+}
+
+th {
+	margin-left: 10px;
+}
+
+.error {
+	color: red;
+}
+
+#start {
+	text-align: center;
+}
