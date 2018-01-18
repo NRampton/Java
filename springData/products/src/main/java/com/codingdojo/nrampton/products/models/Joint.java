@@ -25,6 +25,11 @@ public class Joint {
 	public Joint() {
 		
 	}
+	
+	public Joint(Product product, Category category) {
+		this.product = product;
+		this.category = category;
+	}
 
 	//getters and setters
 	public Long getId() {
