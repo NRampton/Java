@@ -40,6 +40,7 @@ public class LicenseController {
 		return "redirect:/";
 	}
 	
+	
 	@RequestMapping("/deleteAll/noSeriously")
 	public String theNuclearOption() {
 		_ls.theNuclearOption();
