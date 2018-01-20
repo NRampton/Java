@@ -6,9 +6,39 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Successful login!</title>
+	<title>Dashboard</title>
+	<link href="/css/styles.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	You made it!
+	<form id="logoutForm" method="POST" action="/logout">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input id="logout" type="submit" value="Logout!" />
+    </form>
+	<p>Welcome, ${ currentUser.firstName }!</p>
+	<div id="userdisplay">
+		<table>
+			<tr>
+				<td>First Name: </td>
+				<td>${ currentUser.firstName }</td>
+			</tr>
+			<tr>
+				<td>Last Name: </td>
+				<td>${ currentUser.lastName }</td>
+			</tr>
+			<tr>
+				<td>Email: </td>
+				<td>${ currentUser.email }</td>
+			</tr>
+			<tr>
+				<td>Signup Date: </td>
+				<td>${ createdAt }</td>
+			</tr>
+			<tr>
+				<td>Last Sign In: </td>
+				<td>${ updatedAt }</td>
+			</tr>
+		</table>
+	</div>
+	
 </body>
 </html>

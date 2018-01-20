@@ -11,6 +11,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="users")
@@ -21,15 +24,20 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@Size(min=1)
 	private String firstName;
+	@Size(min=1)
 	private String lastName;
 	private String email;
+	@Size(min=5)
 	private String password;
 	@Transient
 	private String confirmPassword;
 	
 	@Column(updatable=false)
+	@DateTimeFormat(pattern="MMMM dd, yyyy")
 	private Date createdAt;
+	@DateTimeFormat(pattern="MMMM dd, yyyy")
 	private Date updatedAt;
 	
 	//constructors

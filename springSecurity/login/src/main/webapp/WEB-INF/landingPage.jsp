@@ -9,7 +9,13 @@
 	<title>Login/Registration</title>
 </head>
 <body>
-	<h1>Login</h1>
+	<c:if test="${logoutMessage != null}">
+        <c:out value="${logoutMessage}"></c:out>
+    </c:if>
+    <h1>Login</h1>
+    <c:if test="${errorMessage != null}">
+        <c:out value="${errorMessage}"></c:out>
+    </c:if>
 		<form method="POST" action="/your_server/login">
 			<p>
 				<label for="username">Email: </label>
@@ -24,7 +30,7 @@
 		</form>
 	<h1>Register</h1>
 	
-		<p><form:errors path="user.*"/></p>
+		<p><form:errors path="newUser.*"/></p>
 		<p>${ successMessage }</p>
 		<p>${ failureMessage }</p>
 		
