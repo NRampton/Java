@@ -39,8 +39,15 @@ public class Users {
 		if (result.hasErrors()) {
 			return "registrationPage";
 		}
-		_us.saveUserWithUserRole(user);
+		_us.saveUserWithAdminRole(user);
 		return "redirect:/login";
+	}
+	
+	@RequestMapping("/admin")
+	public String adminPage(Principal principal, Model model) {
+		String username = principal.getName();
+		model.addAttribute("currentUser", _us.findByUsername(username));
+		return "adminPage";
 	}
 	
 	@RequestMapping("/login")
