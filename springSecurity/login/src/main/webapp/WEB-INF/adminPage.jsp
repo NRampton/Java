@@ -29,7 +29,7 @@
 					<td>
 						<c:set var="checker" value="false" />
 						<c:forEach items="${ user.roles }" var="role">
-							<c:if test="${ role.name.equals('ROLE_ADMIN') }">
+							<c:if test="${ role.name.equals('ROLE_ADMIN') }"> test="${ join.userj_id == currentUser.id }
 								<c:set var="checker" value="true" />
 							</c:if>
 						</c:forEach>
