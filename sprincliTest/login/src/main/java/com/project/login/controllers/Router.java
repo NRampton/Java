@@ -26,8 +26,12 @@ public class Router{
 	}
 
 	@RequestMapping("")
-	public String redirect(HttpServletRequest req){		
+	public String redirect(HttpServletRequest req, HttpSession session){	
 		String url = req.getRequestURI().toString();
+		if(session.getAttribute("id") != null) {
+			return "redirect:/dashboard";
+		}	else {
 		return "redirect:/register";
+		}
 	}		
 }

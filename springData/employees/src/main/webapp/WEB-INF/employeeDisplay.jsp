@@ -27,6 +27,7 @@
 			<h4>${ employee.first_name } ${ employee.last_name } is not a manager and has no manager. What shall we do about that?</h4>
 			<h5>Make them a manager by giving them an underling:</h5>
 				<form method="POST" action="/addUnderling" modelAttribute="underling"> <!-- working out the form for adding an underling. -->
+				
 			<p>
 			<h5>Make them an underling by giving them a manager:</h5>
 		</c:if>
