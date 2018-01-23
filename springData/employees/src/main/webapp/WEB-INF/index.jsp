@@ -15,9 +15,11 @@
 
 	<body>
 		<h3>Employees</h3>
-		<c:forEach items="${employees}" var="employee">
-			<p><a href="/${ employee.id}">${employee.first_name} ${employee.last_name}</a></p>
-		</c:forEach>
+		<ul>
+			<c:forEach items="${employees}" var="employee">
+				<li><a href="/${ employee.id}">${employee.first_name} ${employee.last_name}</a></li>
+			</c:forEach>
+		</ul>
 		<p><a href="new">Create a new employee record</a></p>
 	</body>
 </html>

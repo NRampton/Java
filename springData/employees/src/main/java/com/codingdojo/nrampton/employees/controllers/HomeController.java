@@ -43,7 +43,22 @@ public class HomeController {
 	
 	@RequestMapping("/{id}")
 	public String showEmployee(Model model, @PathVariable("id") Long id) {
-		model.addAttribute("employee", _es.getEmployeeById(id));
+		Employee employee = _es.getEmployeeById(id);
+		model.addAttribute("prospectiveUnderlings", _es.getProspectiveUnderlings(employee));     //This still seems to be populating the employee themselves as a prospective underling. Fix it!
+		model.addAttribute("prospectiveOverlords", _es.getProspectiveOverlords());
+		model.addAttribute("employee", employee);
 		return "employeeDisplay";
+	}
+	
+	@PostMapping("/addUnderling")
+	public String addUnderling(@RequestParam("overlordId") Long overlordId, @RequestParam("underlingId") Long underlingId) {
+		_es.addUnderlingToOverlord(overlordId, underlingId);
+		return "redirect:/" + overlordId;
+	}
+	
+	@PostMapping("/addOverlord")
+	public String addOverlord(@RequestParam("overlordId") Long overlordId, @RequestParam("underlingId") Long underlingId) {
+		_es.addUnderlingToOverlord(overlordId, underlingId);
+		return "redirect:/" + underlingId;
 	}
 }
