@@ -77,10 +77,10 @@ public class Event{
 	public void setName(String name) {
 		this.name=name;
 	} 
-	public String getSDate() {
+	public String getsDate() {
 		return sDate;
 	}
-	public void setSDate(String sDate) {
+	public void setsDate(String sDate) {
 		this.sDate = sDate;
 	}
 	public Date getDate() {

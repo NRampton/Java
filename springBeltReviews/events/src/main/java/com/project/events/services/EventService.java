@@ -28,7 +28,7 @@ public class EventService {
 	public void createEvent(User host, Event event)  {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			event.setDate(format.parse(event.getSDate()));
+			event.setDate(format.parse(event.getsDate()));
 		} catch(ParseException e) {
 			e.printStackTrace();
 		}
@@ -68,7 +68,7 @@ public class EventService {
 	public void updateEvent(Event event, User host) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			event.setDate(format.parse(event.getSDate()));
+			event.setDate(format.parse(event.getsDate()));
 		} catch(ParseException e) {
 			e.printStackTrace();
 		}

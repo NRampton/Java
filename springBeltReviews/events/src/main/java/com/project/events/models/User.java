@@ -39,6 +39,7 @@ public class User{
 	@Size(min=8, message="Password must be at least eight characters")
 	private String password;
 	@Transient
+	@Size(min=1, message="Password confirmation is required")
 	private String confirm;	
 	@DateTimeFormat(pattern="MM:dd:yyyy HH:mm:ss")
 	private Date createdAt;	

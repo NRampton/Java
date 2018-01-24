@@ -16,7 +16,7 @@
 	<body>
 		<h1>${event.name}</h1>
 		<p>Host: ${event.host.firstName} ${event.host.lastName}</p>
-		<p>Date: ${event.date}</p>
+		<p>Date: ${event.sDate}</p>
 		<p>Location: ${event.location}, ${event.state}</p>
 		<p>People attending: ${event.attendees.size()}</p>
 		<table>

@@ -28,6 +28,8 @@ import com.project.events.models.Message;
 import com.project.events.services.UserService;
 import com.project.events.services.EventService;
 import com.project.events.services.MessageService;
+import com.project.events.validators.UserValidator;
+import com.project.events.validators.EventValidator;
 
 @Controller
 public class UserController{
@@ -35,13 +37,17 @@ public class UserController{
 	EventService _es;
 	MessageService _ms;
 	private BCryptPasswordEncoder _bcrypt;
+	private UserValidator _uv;
+	private EventValidator _ev;
 
-	public UserController(UserService _us, EventService _es, MessageService _ms) {
+	public UserController(UserService _us, EventService _es, MessageService _ms, UserValidator _uv, EventValidator _ev) {
 		super();
 		this._us = _us;		
 		this._ms = _ms;
 		this._es = _es;
 		this._bcrypt = new BCryptPasswordEncoder();
+		this._uv = _uv;
+		this._ev = _ev;
 	}
 	
 	@RequestMapping("/register")
@@ -52,6 +58,8 @@ public class UserController{
 	
 	@PostMapping("/register")
 	public String createUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
+		System.out.println(user.toString());
+		_uv.validate(user, result);
 		if (result.hasErrors()) {
 			return "register";
 		} else {
@@ -71,16 +79,13 @@ public class UserController{
 			List<Event> outOfState = new ArrayList<>();
 			for (Event iEvent : allEvents) {
 				if(iEvent.getState().equals(user.getState())) {
-					System.out.println("true");
 					inState.add(iEvent);
 				} else {
-					System.out.println("false");
 					outOfState.add(iEvent);
 				}
 			}
 			model.addAttribute("inState", inState);
 			model.addAttribute("outOfState", outOfState);
-			System.out.println(inState);
 			return "dashboard";
 		} else {
 			return "redirect:/register";
@@ -112,11 +117,28 @@ public class UserController{
 	}
 
 	@PostMapping("/events")
-	public String createEvent(HttpSession session, @Valid @ModelAttribute("event") Event event, BindingResult result) {
+	public String createEvent(HttpSession session, @Valid @ModelAttribute("event") Event event, BindingResult result, Model model) {
+		System.out.println(event);
+		_ev.validate(event, result);
 		if (result.hasErrors()) {
-			return "dashboard";
+			if (session.getAttribute("id") != null) {
+				User user = _us.findUserById((Long) session.getAttribute("id"));
+				model.addAttribute("user", user);
+				List<Event> allEvents = _es.getAllEvents();
+				List<Event> inState = new ArrayList<>();
+				List<Event> outOfState = new ArrayList<>();
+				for (Event iEvent : allEvents) {
+					if(iEvent.getState().equals(user.getState())) {
+						inState.add(iEvent);
+					} else {
+						outOfState.add(iEvent);
+					}
+				}
+				model.addAttribute("inState", inState);
+				model.addAttribute("outOfState", outOfState);	
+				return "dashboard";			
+			}		
 		}
-		
 		User host = _us.findUserById((Long) session.getAttribute("id"));
 		_es.createEvent(host, event);
 		return "redirect:/dashboard";

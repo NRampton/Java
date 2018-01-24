@@ -1,5 +1,6 @@
 com/project/events/controllers/UserController.class
 com/project/events/models/User.class
+com/project/events/validators/UserValidator.class
 com/project/events/repositories/EventRepository.class
 com/project/events/repositories/MessageRepository.class
 com/project/events/services/EventService.class
@@ -9,4 +10,5 @@ com/project/events/repositories/UserRepository.class
 com/project/events/models/Event.class
 com/project/events/models/Message.class
 com/project/events/EventsApplication.class
+com/project/events/validators/EventValidator.class
 com/project/events/services/UserService.class

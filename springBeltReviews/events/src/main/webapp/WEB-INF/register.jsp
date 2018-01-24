@@ -115,6 +115,7 @@
 				<form:errors path="confirm"></form:errors>
 			</form:label>
 		</p>
+		<p><form:errors path="user.*"/></p>
 		<input type="submit" value="register">
 		</form:form>
 	</body>

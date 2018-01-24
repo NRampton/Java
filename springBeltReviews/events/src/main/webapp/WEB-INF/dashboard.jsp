@@ -30,7 +30,7 @@
 				<c:forEach items="${inState}" var="currentEvent">
 					<tr>
 						<td><a href="/events/${currentEvent.id}">${currentEvent.name}</a></td>
-						<td>${currentEvent.date}</td>
+						<td>${currentEvent.sDate}</td>
 						<td>${currentEvent.location}</td>
 						<td>${currentEvent.host.firstName}</td>
 						<td>
@@ -73,7 +73,7 @@
 				<c:forEach items="${outOfState}" var="otherEvent">
 					<tr>
 							<td><a href="/events/${otherEvent.id}">${otherEvent.name}</a></td>
-						<td>${otherEvent.date}</td>
+						<td>${otherEvent.sDate}</td>
 						<td>${otherEvent.location}</td>
 						<td>${otherEvent.state}</td>
 						<td>${otherEvent.host.firstName}</td>
@@ -102,6 +102,7 @@
 			</tbody>
 		</table>
 		<h3>Create an event: </h3>
+		<p><form:errors path="event.*"/></p>
 		<form:form method="POST" action="/events" modelAttribute="event">
 			<p>
 				<form:label path="name">Name: 

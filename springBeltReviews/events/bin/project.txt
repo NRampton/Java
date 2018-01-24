@@ -1,1 +1,1 @@
-/Users/Core/Desktop/DojoAssignments/Java/sprincliTest/login
+/Users/Core/Desktop/DojoAssignments/Java/springBeltReviews/events
