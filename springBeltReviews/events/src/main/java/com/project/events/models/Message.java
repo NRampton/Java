@@ -73,10 +73,23 @@ public class Message{
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public User getPoster() {
+		return poster;
+	}
+	public void setPoster(User poster) {
+		this.poster = poster;
+	}
+	public Event getSubject() {
+		return subject;
+	}
+	public void setSubject(Event subject) {
+		this.subject = subject;
+	}
 	
 	// Setters and Getters go here
 	
 	public Message(){
+		super();
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}

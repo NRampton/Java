@@ -10,7 +10,7 @@ import org.apache.catalina.connector.Connector;
 @SpringBootApplication
 public class EventsApplication{
 	public static void main(String[] args) {
-		SpringApplication.run(loginApplication.class, args);
+		SpringApplication.run(EventsApplication.class, args);
 	}
 
     @Bean

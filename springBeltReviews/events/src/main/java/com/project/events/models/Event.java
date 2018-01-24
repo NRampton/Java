@@ -9,9 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
@@ -27,10 +27,10 @@ public class Event{
 	@GeneratedValue
 	private long id;
 
-	@Size(min=1, message="Message name cannot be blank")
+	@Size(min=1, message="Event name cannot be blank")
 	private String name;
 	
-	@DateTimeFormat(pattern="MM-dd-yyyy")
+	private String sDate;
 	private Date date;
 
 	@Size(min=1, message="Location cannot be blank")
@@ -55,8 +55,8 @@ public class Event{
 			inverseJoinColumns = @JoinColumn(name = "user_id")
 	)
 	private List<User> attendees;
-	@OnetoMany(mappedBy="subject", fetch=FetchType.LAZY)
-	private List<Message> comment;
+	@OneToMany(mappedBy="subject", fetch=FetchType.LAZY)
+	private List<Message> comments;
 
 	@PrePersist
 	public void onCreate(){this.createdAt = new Date();}
@@ -70,6 +70,18 @@ public class Event{
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name=name;
+	} 
+	public String getSDate() {
+		return sDate;
+	}
+	public void setSDate(String sDate) {
+		this.sDate = sDate;
 	}
 	public Date getDate() {
 		return date;
@@ -101,9 +113,28 @@ public class Event{
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public User getHost() {
+		return host;
+	}
+	public void setHost (User host) {
+		this.host = host;
+	}
+	public List<User> getAttendees() {
+		return attendees;
+	}
+	public void setAttendees(List<User> attendees) {
+		this.attendees = attendees;
+	}
+	public List<Message> getComments() {
+		return comments;
+	}
+	public void setComments(List<Message> comments) {
+		this.comments = comments;
+	}
 	
 	
 	public Event(){
+		super();
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}

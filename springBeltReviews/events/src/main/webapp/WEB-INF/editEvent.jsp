@@ -8,101 +8,14 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Dashboard</title>
+		<title>Index</title>
 		<link rel="stylesheet" type="text/css" href="/css/styles.css">	
 		<script src="/js/main.js"></script>
 	</head>
 
 	<body>
-		<h1>Greetings, ${ user.firstName }</h1>
-		<h3>Here are some of the events in your state:</h3>
-		<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Date</th>
-					<th>Location</th>
-					<th>Host</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${inState}" var="currentEvent">
-					<tr>
-						<td><a href="/events/${currentEvent.id}">${currentEvent.name}</a></td>
-						<td>${currentEvent.date}</td>
-						<td>${currentEvent.location}</td>
-						<td>${currentEvent.host.firstName}</td>
-						<td>
-							<c:if test="${currentEvent.host.equals(user)}">
-								<a href="/events/${currentEvent.id}/edit">Edit</a>
-								<a href="/events/${currentEvent.id}/delete">Delete</a>
-							</c:if>
-							<c:if test="${!currentEvent.host.equals(user)}">
-								<c:set var="check" value="false"></c:set>
-								<c:forEach items="${currentEvent.attendees}" var="person">
-									<c:if test="${person.id == user.id}">
-										<c:set var="check" value="true" />
-									</c:if>
-								</c:forEach>
-								<c:if test="${check}">
-									<span>joining</span> <a href="/events/${currentEvent.id}/cancel">Flake out</a>
-								</c:if>
-								<c:if test="${!check}">
-									<a href="/events/${currentEvent.id}/join">Join</a>
-								</c:if>
-							</c:if>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<h3>Here are some of the events in other states:</h3>
-		<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Date</th>
-					<th>Location</th>
-					<th>State</th>
-					<th>Host</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${outOfState}" var="otherEvent">
-					<tr>
-							<td><a href="/events/${otherEvent.id}">${otherEvent.name}</a></td>
-						<td>${otherEvent.date}</td>
-						<td>${otherEvent.location}</td>
-						<td>${otherEvent.state}</td>
-						<td>${otherEvent.host.firstName}</td>
-						<td>
-								<c:if test="${otherEvent.host.equals(user)}">
-										<a href="/events/${otherEvent.id}/edit">Edit</a>
-										<a href="/events/${otherEvent.id}/delete">Delete</a>
-									</c:if>
-									<c:if test="${!otherEvent.host.equals(user)}">
-										<c:set var="check" value="false"></c:set>
-										<c:forEach items="${otherEvent.attendees}" var="person">
-											<c:if test="${person.id == user.id}">
-												<c:set var="check" value="true" />
-											</c:if>
-										</c:forEach>
-										<c:if test="${check}">
-											<span>joining</span> <a href="/events/${otherEvent.id}/cancel">Flake out</a>
-										</c:if>
-										<c:if test="${!check}">
-											<a href="/events/${otherEvent.id}/join">Join</a>
-										</c:if>
-									</c:if>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
 		<h3>Create an event: </h3>
-		<form:form method="POST" action="/events" modelAttribute="event">
+		<form:form method="POST" action="/events/${event.id}/edit" modelAttribute="event">
 			<p>
 				<form:label path="name">Name: 
 					<form:input path="name" />
@@ -178,7 +91,7 @@
 					<form:errors path="state" />
 				</form:label>
 			</p>
-			<button type="submit">Create</button>
+			<button type="submit">Update</button>
 		</form:form>
 		<a href="/logout">Logout</a>
 	</body>

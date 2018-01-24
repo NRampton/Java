@@ -34,6 +34,7 @@ public class User{
 	@Size(min=2, max=2, message="Please use a valid state designation")
 	private String state;
 	@Email(message="Invalid email format! example: example@example.com")
+	@Size(min=1, message="We'll be needing an email address for our secret nefarious database.")
 	private String email;
 	@Size(min=8, message="Password must be at least eight characters")
 	private String password;
@@ -54,7 +55,7 @@ public class User{
 	private List<Event> hostedEvents;
 
 	@OneToMany(mappedBy="poster", fetch=FetchType.LAZY)
-	private List<Message> comment;
+	private List<Message> comments;
 
 
 	//handle createdAt and updatedAt
@@ -124,6 +125,24 @@ public class User{
 	}
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+	public List<Event> getHostedEvents() {
+		return hostedEvents;
+	}
+	public void setHostedEvents(List<Event> hostedEvents) {
+		this.hostedEvents = hostedEvents;
+	}
+	public List<Message> getComments() {
+		return comments;
+	}
+	public void setComments(List<Message> comments) {
+		this.comments = comments;
 	}
 
 

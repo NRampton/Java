@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/*") // Wildcard all routes.
 public class Router{
 	public Router(){
-
+		super();
 	}
 
 	@RequestMapping("")

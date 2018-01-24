@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.project.events.models.User;
+import com.project.events.models.Event;
 
 @Repository 												
-public interface UserRepository extends CrudRepository<User,Long>{
-	User findByEmail(String email);
+public interface EventRepository extends CrudRepository<Event,Long>{
+	
 }

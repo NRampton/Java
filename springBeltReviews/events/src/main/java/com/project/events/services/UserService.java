@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.project.login.models.User;
-import com.project.login.repositories.UserRepository;
+import com.project.events.models.User;
+import com.project.events.repositories.UserRepository;
 
 @Service
 public class UserService {
@@ -16,6 +16,7 @@ public class UserService {
 	private BCryptPasswordEncoder _bcrypt;
 		
 	public UserService(UserRepository _ur){
+		super();
 		this._ur = _ur;
 		this._bcrypt = new BCryptPasswordEncoder();
 	}
