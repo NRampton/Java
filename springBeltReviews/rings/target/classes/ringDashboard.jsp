@@ -30,7 +30,7 @@
 				</div>
 			</c:if>
 			<div id="rings_display">
-				<form action="">
+				<form action="/rings/claim" method="POST">
 					<label for="ring_select">
 						<select name="chosenRing" id="ring_select">
 							<c:forEach items="${ availableRings }" var="ring">
@@ -52,7 +52,7 @@
 					<c:forEach items="${currentUser.bornRings}" var="ring">
 						<tr>
 							<td>${ring.name}</td>
-							<td><a href="/rings/${ring.id}/delete">Part with this ring</a></td>
+							<td><a href="/rings/${ring.id}/lose">Part with this ring</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

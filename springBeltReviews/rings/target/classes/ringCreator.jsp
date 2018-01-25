@@ -14,6 +14,10 @@
 	</head>
 
 	<body>
-		<h1>It's your turn to work.</h1>
+		<h4>Forge a ring of power</h4>
+		<form method="POST" action="/rings/new">
+			<label>Name the ring: <input name="name" type="text"></label>
+			<p><button type="submit">To the Forges!</button></p>
+		</form>
 	</body>
 </html>

@@ -11,7 +11,7 @@ import com.project.rings.models.Ring;
 @Repository 												
 public interface RingRepo extends CrudRepository<Ring,Long>{
 	
-	@Query(value="SELECT r FROM Ring r JOIN r.smith s WHERE s.level > 0")
+	@Query(value="SELECT r FROM Ring r WHERE r.bearer = null")
 	List<Ring> findAvailableRings();
 	// Query methods go here.
 	
