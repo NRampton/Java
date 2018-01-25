@@ -101,14 +101,11 @@ public class UserController{
 	@PostMapping("/login")
 	public String login(HttpSession session, @RequestParam("email") String email, @RequestParam("password") String password) {
 		User user = _us.findUserByEmail(email);
-		System.out.println("Here's the user we found: " + user.getFirstName());
 		if (user == null) {
 			return "redirect:/registration";
 		} else {
 			if (_us.isMatch(password, user.getPassword())) {
-				System.out.println(_us.isMatch(password, user.getPassword()));
 				session.setAttribute("id", user.getId());
-				System.out.println("User in session has the following ID: " + session.getAttribute("id"));
 				return "redirect:/dashboard";
 			} else {
 				return "redirect:/register";

@@ -14,6 +14,32 @@
 	</head>
 
 	<body>
-		<h1>Search Results</h1>
+		<p><a href="/">Go back</a></p>
+		<p><a href="/logout">Logout</a></p>
+		<h5>Find your pool!</h5>
+		<form method="GET" action="/search">
+			<p><input type="text" name="location" placeholder="new search" /></p>
+			<button type="submit">Search</button>
+		</form>
+		<table>
+			<thead>
+				<tr>
+					<th>Address</th>
+					<th>Pool Size</th>
+					<th>Cost/Night</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${results}" var="pool">
+					<tr>
+						<td>${ pool.address}</td>
+						<td>${ pool.size }</td>
+						<td>${ pool.cost }</td>
+						<td><a href="/pools/${pool.id}">${ pool.rating} - See more</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</body>
 </html>

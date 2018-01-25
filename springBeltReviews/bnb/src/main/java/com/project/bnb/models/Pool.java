@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,11 +21,13 @@ public class Pool{
 	@Id
 	@GeneratedValue
 	private long id;
-
+	@Size(min=1)
 	private String address;
+	@Size(min=1)
 	private String description;
 	private double cost;
 	private String size;
+	private double rating;
 	
 	@DateTimeFormat(pattern="MM:dd:yyyy HH:mm:ss")
 	private Date createdAt;
@@ -82,6 +85,12 @@ public class Pool{
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
+	public double getRating() {
+		return rating;
+	}
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
 	public String getSize() {
 		return size;
 	}
@@ -103,5 +112,6 @@ public class Pool{
 	public Pool(){
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
+		this.rating = 0;
 	}
 }

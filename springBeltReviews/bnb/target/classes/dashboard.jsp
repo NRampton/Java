@@ -14,6 +14,59 @@
 	</head>
 
 	<body>
-		<h1>Host Dashboard</h1>
+		<h3>Your Current Listings</h3>
+		<p><a href="/logout">Logout</a></p>
+		<p><a href="/">Search other listings</a></p>
+		<table>
+			<thead>
+				<tr>
+					<th>Address</th>
+					<th>Pool Size</th>
+					<th>Cost / Night</th>
+					<th>Details</th>
+					<th>Remove listing</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${currentUser.properties}" var="pool">
+					<tr>
+						<td>${pool.address}</td>
+						<td>${pool.size}</td>
+						<td>${pool.cost}</td>
+						<td><a href="/host/pools/${pool.id}">${pool.rating} - edit</a></td>
+						<td><a href="/pools/delete/${pool.id}">Remove</a>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<h3>New Listing</h3>
+		<form:form method="POST" action="/pools/new" modelAttribute="pool">
+			<p>
+				<form:label path="address">Address: 
+					<form:input path="address"></form:input>
+					<form:errors path="address"></form:errors>
+				</form:label>
+			</p>
+			<p>
+				<form:label path="description">Description: 
+					<form:textarea path="description"></form:textarea>
+					<form:errors path="description"></form:errors>
+				</form:label>
+			</p>
+			<p>
+				<form:label path="cost">Cost: 
+					<form:input path="cost" type="number" step="25"></form:input>
+					<form:errors path="cost"></form:errors>
+				</form:label>
+			</p>
+			<p>
+				<form:select path="size">Size: 
+					<form:option value="small" label="small"></form:option>
+					<form:option value="medium" label="medium"></form:option>
+					<form:option value="large" label="large"></form:option>
+				</form:select>
+			</p>
+			<button type="submit">Add Listing</button>
+		</form:form>
 	</body>
 </html>

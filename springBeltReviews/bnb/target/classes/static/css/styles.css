@@ -1,0 +1,49 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+h3 {
+	line-height: 50px;
+}
+
+p {
+	line-height: 30px;
+}
+
+td {
+	padding: 0 20px;
+	text-align: center;
+}
+
+button {
+	margin-top: 3%;
+	padding: 3px 8px;;
+	border-radius: 5px;
+}
+
+.pool_display_header {
+	display: inline-block;
+	vertical-align: top;
+	margin: 20px 30px 0 0;
+}
+
+#wrapper {
+	width: 80%;
+	margin: 5% auto;
+
+}
+
+#signin {
+	text-align: right;
+}
+
+#login, #register {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 8%;
+}
+
+#motto {
+	color: silver;
+}

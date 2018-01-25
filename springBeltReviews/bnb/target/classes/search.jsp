@@ -14,9 +14,18 @@
 	</head>
 
 	<body>
-		<c:if test="${ user != null }">
-			<h1>You're logged in!</h1>
-		</c:if>
-		<h1>Search</h1>
+		<div id="wrapper" >
+			<c:if test="${ currentUser == null }">
+				<a id="signin" href="/guest/signin">Login/Sign up</a>
+			</c:if>
+			<c:if test="${ currentUser != null }">
+				<a id="logout" href="/logout">Log out</a>
+			</c:if>
+			<h1>Search</h1>
+			<form method="GET" action="/search">
+				<label>Search: <input type="text" name="location" placeholder="location" /></label>
+				<button type="submit">Search</button>
+			</form>
+		</div>
 	</body>
 </html>

@@ -40,7 +40,7 @@ public class User{
 	private Date updatedAt;
 	@OneToMany(mappedBy="reviewer", fetch=FetchType.LAZY)
 	private List<Review> reviews;
-	@OneToMany(mappedBy="host", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="host", fetch=FetchType.EAGER)
 	private List<Pool> properties;
 	@PrePersist
 	public void onCreate(){this.createdAt = new Date();}

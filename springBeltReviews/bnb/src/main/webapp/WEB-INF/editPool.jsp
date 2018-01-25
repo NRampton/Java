@@ -14,6 +14,38 @@
 	</head>
 
 	<body>
-		<h1>Edit a pool.</h1>
+		<div id="wrapper">
+		<h4>${ pool.address }</h4>
+			<form:form method="POST" action="/pools/new" modelAttribute="pool">
+				<div class="pool_display_header">					
+					<p>
+						<form:label path="description">Description: 
+							<form:textarea rows="5" cols="40" path="description"></form:textarea>
+							<form:errors path="description"></form:errors>
+						</form:label>
+					</p>
+					<form:hidden path="id" value="${ pool.id }" />
+					<form:hidden path="address" value="${ pool.address }"/>
+					<button type="submit">Update Listing</button>
+				</div>
+				<div class="pool_display_header">
+					<p>Email: ${ pool.host.email }</p>
+					<p>Name: ${ pool.host.firstName } ${ pool.host.lastName }</p>
+					<p>Size: 
+						<form:select path="size"> 
+							<form:option value="small" label="small"></form:option>
+							<form:option value="medium" label="medium"></form:option>
+							<form:option value="large" label="large"></form:option>
+						</form:select>
+					</p>
+					<p>
+						<form:label path="cost">Cost: 
+							<form:input path="cost" type="number" step="25"></form:input>
+							<form:errors path="cost"></form:errors>
+						</form:label>
+					</p>				
+				</div>			
+			</form:form>
+		</div>
 	</body>
 </html>

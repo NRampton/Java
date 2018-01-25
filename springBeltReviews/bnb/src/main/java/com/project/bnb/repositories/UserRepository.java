@@ -7,6 +7,7 @@ import com.project.bnb.models.User;
 
 @Repository 												
 public interface UserRepository extends CrudRepository<User,Long>{
+	public User findByEmail(String email);
 	// Query methods go here.
 	
 	// Example:
