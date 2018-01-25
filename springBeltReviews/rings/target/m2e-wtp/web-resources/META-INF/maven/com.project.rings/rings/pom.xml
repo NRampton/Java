@@ -3,8 +3,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.project.bnb</groupId>
-    <artifactId>bnb</artifactId>
+    <groupId>com.project.rings</groupId>
+    <artifactId>rings</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -64,14 +64,6 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
     </dependencies>
 
 	<build>
@@ -83,7 +75,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.project.bnb.bnbApplication</mainClass>
+							<mainClass>com.project.rings.ringsApplication</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
