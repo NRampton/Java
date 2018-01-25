@@ -15,7 +15,9 @@
 
 	<body>
 		<p><a href="/">Go back</a></p>
-		<p><a href="/logout">Logout</a></p>
+		<c:if test="${ currentUser != null }">
+			<p><a href="/logout">Logout</a></p>
+		</c:if>
 		<h5>Find your pool!</h5>
 		<form method="GET" action="/search">
 			<p><input type="text" name="location" placeholder="new search" /></p>

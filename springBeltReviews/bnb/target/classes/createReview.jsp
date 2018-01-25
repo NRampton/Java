@@ -14,6 +14,23 @@
 	</head>
 
 	<body>
-		<h1>Create a review.</h1>
+		<div id="wrapper">
+			<p><a href="/">Go back</a></p>
+			<p><a href="/logout">Logout</a></p>
+			<h4>Review of ${currentPool.address}</h4>
+			<form method="POST" action="/pools/${currentPool.id}/review">
+				<p><textarea name="text" cols="40" rows="10"></textarea></p>
+				<p>
+					<select name="rating">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</p>
+				<button type="submit">Submit Review</button>
+			</form>
+		</div>
 	</body>
 </html>

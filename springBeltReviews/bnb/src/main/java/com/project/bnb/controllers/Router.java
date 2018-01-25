@@ -43,6 +43,10 @@ public class Router{
 
 	@RequestMapping("")									//getting to search page
 	public String showSearch(HttpSession session, Model model){
+		System.out.println("Here's the id of the user who's logged in: " + session.getAttribute("userId"));
+		if (session.getAttribute("userId") == null) {
+			return "search";
+		}
 		model.addAttribute("currentUser", _us.getUserById((Long) session.getAttribute("userId")));
 		return "search";
 	}
@@ -54,7 +58,10 @@ public class Router{
 	}
 	
 	@RequestMapping("/search")										//displaying search results on a GET request
-	public String showResults(@RequestParam("location") String searchTerm, Model model) {
+	public String showResults(@RequestParam("location") String searchTerm, Model model, HttpSession session) {
+		if (session.getAttribute("id") != null) {
+			model.addAttribute("currentUser", _us.getUserById((Long) session.getAttribute("userId")));
+		}
 		List<Pool> searchResults = _ps.searchPools(searchTerm.toLowerCase());
 		model.addAttribute("results", searchResults);
 		return "searchResults";
@@ -68,7 +75,10 @@ public class Router{
 		}
 		_us.createUser(user);
 		session.setAttribute("userId", _us.getUserByEmail(user.getEmail()).getId());
-		return "redirect:/";
+		if (user.getLevel() < 1) {
+			return "redirect:/";
+		}
+		return "redirect:/host/dashboard";
 	}
 	
 	@PostMapping("/login")

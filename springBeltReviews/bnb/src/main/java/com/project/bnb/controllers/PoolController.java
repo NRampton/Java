@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.bnb.models.Pool;
 import com.project.bnb.models.Review;
@@ -33,17 +34,26 @@ public class PoolController{
 		this._rs = _rs;
 	}
 	
-	@RequestMapping("/{id}")
-	public String showPool(Model model, @PathVariable("id") Long id){
-		Pool currentPool = (Pool) _ps.getPoolById(id);
-		model.addAttribute("currentPool", currentPool);
-		return "displayPool";
-	}
-	
 	@RequestMapping("/{id}/review")
-	public String showReviewForm() {
+	public String showReviewForm(@PathVariable("id") Long id, HttpSession session, Model model) {
+		if (session.getAttribute("userId") == null) {
+			return "redirect:/";
+		}
+		Pool currentPool = _ps.getPoolById(id);
+		if (currentPool == null) {
+			return "redirect:/";
+		}
+		model.addAttribute("currentPool", currentPool);
+		model.addAttribute("currentUser", _us.getUserById((Long) session.getAttribute("userId")));
 		return "createReview";
 	}
+	
+	@PostMapping("/{id}/review")
+	public String createReview(@RequestParam("text") String text, @RequestParam("rating") int rating, @PathVariable("id") Long poolId, HttpSession session) {
+		_rs.createReview(poolId, (Long) session.getAttribute("userId"), text, rating);
+		return "redirect:/pools/" + poolId;
+	}
+	
 	
 	@PostMapping("/new")
 	public String createPool(HttpSession session, @Valid @ModelAttribute("pool") Pool pool, BindingResult result) {
@@ -57,8 +67,13 @@ public class PoolController{
 	
 	@RequestMapping("/{id}")
 	public String displayPool(Model model, @Valid @ModelAttribute("review") Review review, HttpSession session, @PathVariable("id") Long id) {
-		User currentUser = _us.getUserById((Long) session.getAttribute("userId"));
-		model.addAttribute("currentUser", currentUser);
+		if (session.getAttribute("userId") == null) {
+			model.addAttribute("currentUser", null);
+		}
+		if (session.getAttribute("userId") != null) {
+			User currentUser = _us.getUserById((Long) session.getAttribute("userId"));
+			model.addAttribute("currentUser", currentUser);
+		}
 		Pool currentPool = _ps.getPoolById(id);
 		if (currentPool == null) {
 			return "redirect:/";

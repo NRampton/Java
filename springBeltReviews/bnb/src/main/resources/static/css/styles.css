@@ -25,13 +25,20 @@ button {
 .pool_display_header {
 	display: inline-block;
 	vertical-align: top;
-	margin: 20px 30px 0 0;
+	margin: 20px 40px 0 0;
 }
 
 #wrapper {
 	width: 80%;
 	margin: 5% auto;
 
+}
+
+#display {
+	height: 300px;
+	overflow: scroll;
+	border: 1px solid black;
+	border-radius: 3px;
 }
 
 #signin {

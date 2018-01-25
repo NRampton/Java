@@ -46,7 +46,7 @@
 					<p>
 						<form:label path="confirm">Confirm password: 
 							<form:input type="password" path="confirm"></form:input>
-							<form:errors path="confirm"></form:errors>
+							<p><form:errors path="confirm"></form:errors></p>
 						</form:label>
 					</p>
 					<p>

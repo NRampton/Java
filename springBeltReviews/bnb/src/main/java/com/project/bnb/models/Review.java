@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Review{
 	@Id
 	@GeneratedValue
-	private long id;
+	private long id;	
 
 	private String text;
 	private int rating;
@@ -84,8 +84,16 @@ public class Review{
 	public void setSubject(Pool subject) {
 		this.subject = subject;
 	}
-	public Review(){
+	public Review(String text, int rating){
+		this.createdAt = new Date();
+		this.updatedAt = new Date();
+		this.text = text;
+		this.rating = rating;
+	}
+	
+	public Review() {
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}
+	
 }
