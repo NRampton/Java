@@ -39,6 +39,7 @@
 						</select>
 					</label>
 					<button type="submit">BIND YOURSELF IN DARKNESS</button>
+					<p class="errors">${ claimError }</p>
 				</form>
 			</div>
 			<table>

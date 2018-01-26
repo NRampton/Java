@@ -1,5 +1,7 @@
 package com.project.rings.controllers;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.rings.models.Ring;
 import com.project.rings.models.User;
@@ -60,8 +63,17 @@ public class RingController{
 	}
 	
 	@PostMapping("rings/claim")
-	public String claimRing(HttpSession session, @RequestParam("chosenRing") Ring ring) {
+	public String claimRing(HttpSession session, @RequestParam("chosenRing") Ring ring, RedirectAttributes rA) {
 		User user = _us.getUserById((Long) session.getAttribute("id"));
+		if(user.getLastPickUp() == null) {
+			_rs.claimRing(ring, user);
+			return "redirect:/bind_in_darkness";
+		}
+		Date now = new Date();
+		if ((now.getTime() - user.getLastPickUp().getTime()) < 300000 ) {
+			rA.addFlashAttribute("claimError", "Your too-greedy hand will be your downfall! Stay, and play a little more with those baubles of power you already possess.");
+			return "redirect:/bind_in_darkness";
+		}
 		_rs.claimRing(ring, user);
 		return "redirect:/bind_in_darkness";
 	}

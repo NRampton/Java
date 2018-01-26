@@ -106,6 +106,12 @@ public class User{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public Date getLastPickUp() {
+		return lastPickUp;
+	}
+	public void setLastPickUp(Date lastPickUp) {
+		this.lastPickUp = lastPickUp;
+	}
 	public String getPassword() {
 		return password;
 	}
